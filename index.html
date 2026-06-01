@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -147,7 +147,7 @@ body{
 
   width:200%;
 
-  max-width:700px;
+  max-width:600px;
 
 }
 
@@ -167,21 +167,21 @@ body{
 
 .ornament-top-left{
 
-  top:-40px;
+  top:-30px;
 
-  left:-40px;
+  left:-30px;
 
-  width:320px;
+  width:520px;
 
 }
 
 .ornament-bottom-right{
 
-  bottom:-40px;
+  bottom:-30px;
 
-  right:-40px;
+  right:-30px;
 
-  width:460px;
+  width:560px;
 
 }
 
@@ -2865,14 +2865,14 @@ window.addEventListener("load", () => {
 
 });
 
-
 /* =========================
    SCROLL REVEAL
 ========================= */
 
-const observer = new IntersectionObserver((entries) => {
+const observer =
+new IntersectionObserver((entries)=>{
 
-  entries.forEach(entry => {
+  entries.forEach(entry=>{
 
     if(entry.isIntersecting){
 
@@ -2887,16 +2887,18 @@ const observer = new IntersectionObserver((entries) => {
   });
 
 },{
-  threshold:0.05
+  threshold:0.15,
+  rootMargin:"0px 0px -50px 0px"
 });
 
 document
 .querySelectorAll(".scroll-reveal")
-.forEach(el => {
+.forEach(el=>{
 
   observer.observe(el);
 
 });
+
 /* =========================
    COUNTDOWN
 ========================= */
