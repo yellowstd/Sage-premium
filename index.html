@@ -196,6 +196,13 @@ body{
 
   color:#444;
 }
+  .cover-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  inset:0;
+}
 
 /* =========================
    BUTTON
@@ -275,6 +282,28 @@ body{
   width:100%;
 
   display:block;
+}
+  .cover.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:scale(1.03);
+}
+
+}
+.cover-back-ornament{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+  opacity:.08;
+}
+
+.cover-back-ornament img{
+  width:500px;
+  max-width:80%;
 }
 
 /* =========================
@@ -363,6 +392,20 @@ body{
   transform:
   scale(1)
   rotate(0);
+}
+  .cover-back-ornament{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+  opacity:.08;
+}
+
+.cover-back-ornament img{
+  width:500px;
+  max-width:80%;
 }
 @media (max-width:768px){
 
@@ -737,17 +780,6 @@ body{
   left:calc(50% + 45px);
 
 }
- .cover.hide{
-
-  opacity:0;
-
-  visibility:hidden;
-
-  pointer-events:none;
-
-  transform:scale(1.03);
-
-} 
 
 /* =========================
    SAVE THE DATE
@@ -2920,36 +2952,31 @@ wishForm.addEventListener("submit", (e) => {
   wishForm.reset();
 
 });
-
+if(distance < 0){
+  document.getElementById("days").innerHTML = "00";
+  document.getElementById("hours").innerHTML = "00";
+  document.getElementById("minutes").innerHTML = "00";
+  document.getElementById("seconds").innerHTML = "00";
+  return;
+}
 /* =========================
    MUSIC PLAYER
 ========================= */
 
-const music =
-document.getElementById("bgMusic");
+openBtn.addEventListener("click", () => {
 
-const musicButton =
-document.getElementById("musicButton");
+  cover.classList.add("hide");
+  mainContent.classList.add("show");
 
-let isPlaying = false;
+  document.body.classList.remove("lock-scroll");
 
-musicButton.addEventListener("click", () => {
+  music.play();
+  isPlaying = true;
+  musicButton.classList.add("playing");
 
-  if(isPlaying){
-
-    music.pause();
-
-    musicButton.classList.remove("playing");
-
-  }else{
-
-    music.play();
-
-    musicButton.classList.add("playing");
-
-  }
-
-  isPlaying = !isPlaying;
+  setTimeout(() => {
+    cover.remove();
+  }, 1000);
 
 });
   </script>
