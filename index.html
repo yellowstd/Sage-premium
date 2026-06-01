@@ -110,15 +110,19 @@ body{
 }
 
 .cover-bg img{
-
-  width:200%;
-
-  height:200%;
-
+  width:100%;
+  height:100%;
   object-fit:cover;
-
+}.cover{
+  transition:all 1s ease;
 }
 
+.cover.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:scale(1.03);
+}
 /* =========================
    BACKGROUND ORNAMENT
 ========================= */
@@ -230,17 +234,13 @@ body{
 }
 
 .frame-img{
-
   position:absolute;
-
-  width:150%;
-
-  max-width:560px;
-
+  width:100%;
+  max-width:420px;
   pointer-events:none;
-
+  z-index:1;
 }
-
+ 
 .name-frame .cover-title{
 
   position:relative;
@@ -372,27 +372,20 @@ body{
   }
 
   .ornament-top-left{
-
-    width:150px;
-
-    top:-20px;
-
-    left:-20px;
-
-  }
-
-  .ornament-bottom-right{
-
-    width:180px;
-
-    bottom:-20px;
-
-    right:-20px;
-
-  }
-
+  position:absolute;
+  top:-80px;
+  left:-80px;
+  width:min(38vw, 420px);
+  z-index:3;
 }
 
+.ornament-bottom-right{
+  position:absolute;
+  bottom:-80px;
+  right:-80px;
+  width:min(42vw, 460px);
+  z-index:3;
+}
   
 /* =========================
    REVEAL SYSTEM
@@ -1856,6 +1849,59 @@ body{
 
 }
 
+ .lightbox{
+
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.9);
+
+  display:none;
+
+  justify-content:center;
+  align-items:center;
+
+  z-index:99999;
+}
+
+.lightbox img{
+
+  max-width:90%;
+  max-height:90%;
+
+  border-radius:20px;
+}
+
+.lightbox span{
+
+  position:absolute;
+
+  top:20px;
+  right:30px;
+
+  font-size:40px;
+  color:white;
+
+  cursor:pointer;
+}
+
+ .music-button.playing{
+
+  animation:spinMusic 4s linear infinite;
+
+}
+
+ @keyframes spinMusic{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
 </style>
 <body>
 
@@ -1867,7 +1913,9 @@ body{
 
   <!-- Background -->
 
-  <div class="cover-bg"></div>
+  <div class="cover-bg">
+  <img src="cover.jpg" alt="Wedding Cover">
+</div>
 
   <!-- Ornament Background -->
 
@@ -2314,8 +2362,6 @@ body{
     </div>
 
     <div class="timeline">
-
-      <div class="timeline">
 
   <!-- STORY 1 -->
 
@@ -2783,10 +2829,18 @@ body{
   loop
 >
   <source
-    src="music.mp3"
+    src="backsound.mp3"
     type="audio/mpeg"
   >
 </audio>
+
+ <div class="lightbox" id="lightbox">
+
+  <span id="closeLightbox">&times;</span>
+
+  <img id="lightboxImg">
+
+</div>
   <!-- JS -->
 
   <script>
@@ -2816,17 +2870,6 @@ window.addEventListener("load", () => {
    OPEN INVITATION
 ========================= */
 
-document.body.classList.add("lock-scroll");
-
-const openBtn =
-document.getElementById("openInvitation");
-
-const cover =
-document.querySelector(".cover");
-
-const mainContent =
-document.querySelector(".main-content");
-
 openBtn.addEventListener("click", () => {
 
   cover.classList.add("hide");
@@ -2835,11 +2878,21 @@ openBtn.addEventListener("click", () => {
 
   document.body.classList.remove("lock-scroll");
 
+  music.play()
+  .then(() => {
+
+    isPlaying = true;
+
+    musicButton.classList.add("playing");
+
+  })
+  .catch(err => console.log(err));
+
   setTimeout(() => {
 
     cover.remove();
 
-  }, 1000);
+  },1000);
 
 });
 
@@ -2906,44 +2959,53 @@ document
 const weddingDate =
 new Date("Dec 12, 2026 08:00:00").getTime();
 
-setInterval(() => {
+const countdown = setInterval(() => {
 
   const now = new Date().getTime();
+  const distance = weddingDate - now;
 
-  const distance =
-  weddingDate - now;
+  if(distance <= 0){
+
+    clearInterval(countdown);
+
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
+
+    return;
+  }
 
   const days =
-  Math.floor(distance / (1000 * 60 * 60 * 24));
+  Math.floor(distance / (1000*60*60*24));
 
   const hours =
   Math.floor(
-  (distance % (1000 * 60 * 60 * 24))
-  /
-  (1000 * 60 * 60)
+    (distance % (1000*60*60*24))
+    /
+    (1000*60*60)
   );
 
   const minutes =
   Math.floor(
-  (distance % (1000 * 60 * 60))
-  /
-  (1000 * 60)
+    (distance % (1000*60*60))
+    /
+    (1000*60)
   );
 
   const seconds =
   Math.floor(
-  (distance % (1000 * 60))
-  /
-  1000
+    (distance % (1000*60))
+    /
+    1000
   );
 
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
 
-}, 1000);
-
+},1000);
 /* =========================
    GALLERY LOVE
 ========================= */
@@ -2978,6 +3040,58 @@ document.getElementById("wishForm");
 
 const wishList =
 document.getElementById("wishList");
+   function saveWish(name,message){
+
+  const wishes =
+  JSON.parse(
+    localStorage.getItem("wishes")
+  ) || [];
+
+  wishes.unshift({
+    name,
+    message
+  });
+
+  localStorage.setItem(
+    "wishes",
+    JSON.stringify(wishes)
+  );
+}
+
+function loadWish(){
+
+  const wishes =
+  JSON.parse(
+    localStorage.getItem("wishes")
+  ) || [];
+
+  wishes.forEach(item=>{
+
+    const card =
+    document.createElement("div");
+
+    card.className = "wish-card";
+
+    const title =
+    document.createElement("h4");
+
+    title.textContent = item.name;
+
+    const text =
+    document.createElement("p");
+
+    text.textContent = item.message;
+
+    card.appendChild(title);
+    card.appendChild(text);
+
+    wishList.appendChild(card);
+
+  });
+
+}
+
+loadWish();
 
 wishForm.addEventListener("submit", (e) => {
 
@@ -2985,6 +3099,8 @@ wishForm.addEventListener("submit", (e) => {
 
   const name =
   document.getElementById("wishName").value;
+
+ saveWish(name,message);
 
   const message =
   document.getElementById("wishMessage").value;
@@ -2994,20 +3110,19 @@ wishForm.addEventListener("submit", (e) => {
 
   card.className = "wish-card";
 
-  card.innerHTML = `
+  const title =
+document.createElement("h4");
 
-    <h4>${name}</h4>
+title.textContent = name;
 
-    <p>${message}</p>
+const text =
+document.createElement("p");
 
-  `;
+text.textContent = message;
 
-  wishList.prepend(card);
-
-  wishForm.reset();
-
-});
-
+card.appendChild(title);
+card.appendChild(text);
+ 
 /* =========================
    MUSIC PLAYER
 ========================= */
@@ -3039,6 +3154,52 @@ musicButton.addEventListener("click", () => {
   isPlaying = !isPlaying;
 
 });
+
+ const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImg =
+document.getElementById("lightboxImg");
+
+document
+.querySelectorAll(".gallery-item img")
+.forEach(img=>{
+
+  img.addEventListener("click",()=>{
+
+    lightbox.style.display="flex";
+
+    lightboxImg.src = img.src;
+
+  });
+
+});
+
+document
+.getElementById("closeLightbox")
+.addEventListener("click",()=>{
+
+  lightbox.style.display="none";
+
+});
+
+ const params =
+new URLSearchParams(
+window.location.search
+);
+
+const guest =
+params.get("to");
+
+if(guest){
+
+  document.querySelector(
+    ".guest-name"
+  ).innerHTML =
+
+  `Kepada Yth.<br><strong>${guest}</strong>`;
+
+}
   </script>
 
 </body>
