@@ -73,7 +73,7 @@ body{
   overflow-x:hidden;
 }
   
-  /* =========================
+/* =========================
    COVER
 ========================= */
 
@@ -87,17 +87,12 @@ body{
 
   align-items:center;
 
-  text-align:center;
-
   position:relative;
 
   overflow:hidden;
 
-  background:#F8F6F2;
+  text-align:center;
 
-  transition:
-  opacity 1s ease,
-  visibility 1s ease;
 }
 
 /* =========================
@@ -110,21 +105,92 @@ body{
 
   inset:0;
 
-  background:
-
-  radial-gradient(
-  circle at top left,
-  rgba(120,134,107,.08),
-  transparent 40%
-  ),
-
-  radial-gradient(
-  circle at bottom right,
-  rgba(120,134,107,.08),
-  transparent 40%
-  );
-
   z-index:1;
+
+}
+
+.cover-bg img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+}
+
+/* =========================
+   BACKGROUND ORNAMENT
+========================= */
+
+.cover-back-ornament{
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:2;
+
+  pointer-events:none;
+
+  opacity:.08;
+
+}
+
+.cover-back-ornament img{
+
+  width:85%;
+
+  max-width:700px;
+
+}
+
+/* =========================
+   SIDE ORNAMENT
+========================= */
+
+.cover-ornament{
+
+  position:absolute;
+
+  z-index:3;
+
+  pointer-events:none;
+
+}
+
+.ornament-top-left{
+
+  top:-40px;
+
+  left:-40px;
+
+  width:220px;
+
+}
+
+.ornament-bottom-right{
+
+  bottom:-40px;
+
+  right:-40px;
+
+  width:260px;
+
+}
+
+.cover-ornament img{
+
+  width:100%;
+
+  display:block;
+
 }
 
 /* =========================
@@ -138,63 +204,89 @@ body{
   z-index:5;
 
   width:min(90%,500px);
+
+  margin:auto;
+
+  transform:translateY(-35px);
+
 }
 
-.cover-subtitle{
+/* =========================
+   FRAME
+========================= */
 
-  font-size:.75rem;
+.name-frame{
 
-  letter-spacing:4px;
+  position:relative;
 
-  text-transform:uppercase;
+  display:flex;
 
-  color:#78866B;
+  justify-content:center;
 
-  margin-bottom:15px;
+  align-items:center;
+
+  margin-bottom:40px;
+
 }
 
-.cover-divider{
+.frame-img{
 
-  font-size:1rem;
+  position:absolute;
 
-  color:#78866B;
+  width:100%;
 
-  margin-bottom:20px;
+  max-width:560px;
+
+  pointer-events:none;
+
 }
+
+.name-frame .cover-title{
+
+  position:relative;
+
+  z-index:2;
+
+  margin:0;
+
+}
+
+/* =========================
+   TITLE
+========================= */
 
 .cover-title{
 
   font-family:'Cormorant Garamond',serif;
 
-  font-size:3rem;
+  font-size:3.2rem;
 
   font-weight:500;
 
-  line-height:1.2;
-
-  margin-bottom:15px;
-
   color:#2E2E2E;
+
 }
 
 .cover-date{
 
-  font-size:.9rem;
+  margin-top:20px;
 
-  letter-spacing:2px;
+  margin-bottom:35px;
+
+  letter-spacing:4px;
 
   color:#666;
 
-  margin-bottom:25px;
 }
 
 .guest-name{
 
   line-height:1.8;
 
+  color:#555;
+
   margin-bottom:35px;
 
-  color:#444;
 }
 
 /* =========================
@@ -203,99 +295,54 @@ body{
 
 #openInvitation{
 
-  padding:15px 38px;
+  padding:16px 42px;
 
   border:none;
 
   border-radius:999px;
 
-  background:linear-gradient(
-    135deg,
-    #8EA17E,
-    #78866B
-  );
+  background:#9BA88A;
 
   color:#fff;
 
-  font-weight:500;
+  font-weight:600;
 
   cursor:pointer;
 
   box-shadow:
-    0 10px 25px rgba(120,134,107,.25),
-    inset 0 1px 0 rgba(255,255,255,.3);
-
-  transition:.4s;
-}
-
-#openInvitation:hover{
-
-  transform:
-    translateY(-4px)
-    scale(1.04);
-
-  box-shadow:
-    0 18px 35px rgba(120,134,107,.35);
+  0 10px 25px rgba(155,168,138,.3);
 
 }
 
 /* =========================
-   COVER ORNAMENT
+   MOBILE
 ========================= */
-
-.cover-ornament{
-
-  position:absolute;
-
-  z-index:2;
-
-  pointer-events:none;
-
-  opacity:1;
-
-}
-
-.cover-ornament img{
-
-  width:100%;
-
-  height:auto;
-
-  display:block;
-
-}
-
-/* KIRI ATAS */
-
-.ornament-top-left{
-
-  top:-30px;
-
-  left:-30px;
-
-  width:280px;
-
-}
-
-/* KANAN BAWAH */
-
-.ornament-bottom-right{
-
-  bottom:-30px;
-
-  right:-30px;
-
-  width:320px;
-
-}
-
-/* MOBILE */
 
 @media (max-width:768px){
 
+  .cover-content{
+
+    width:90%;
+
+    transform:translateY(-20px);
+
+  }
+
+  .cover-title{
+
+    font-size:2.7rem;
+
+  }
+
+  .frame-img{
+
+    max-width:420px;
+
+  }
+
   .ornament-top-left{
 
-    width:180px;
+    width:150px;
 
     top:-20px;
 
@@ -305,7 +352,7 @@ body{
 
   .ornament-bottom-right{
 
-    width:220px;
+    width:180px;
 
     bottom:-20px;
 
@@ -315,7 +362,7 @@ body{
 
 }
 
-
+  
 /* =========================
    REVEAL SYSTEM
 ========================= */
