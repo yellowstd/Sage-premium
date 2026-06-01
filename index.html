@@ -240,23 +240,69 @@ body{
 }
 
 /* =========================
-   ORNAMENT
+   COVER ORNAMENT SYSTEM
 ========================= */
+
+.cover-back-ornament{
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:1;
+
+  opacity:.12;
+
+  pointer-events:none;
+
+}
+
+.cover-back-ornament img{
+
+  width:90%;
+
+  max-width:750px;
+
+}
+
+/* =========================
+   SIDE ORNAMENT
+========================= */
+
+.cover-ornament{
+
+  position:absolute;
+
+  z-index:2;
+
+  pointer-events:none;
+
+}
 
 .ornament-top-left{
 
-  top:-80px;
-  left:-80px;
+  top:-100px;
 
-  width:420px;
+  left:-100px;
+
+  width:380px;
+
 }
 
 .ornament-bottom-right{
 
-  bottom:-80px;
-  right:-80px;
+  bottom:-100px;
 
-  width:480px;
+  right:-100px;
+
+  width:420px;
+
 }
 
 .cover-ornament img{
@@ -264,35 +310,87 @@ body{
   width:100%;
 
   display:block;
+
 }
 
 /* =========================
-   FLOATING
+   NAME FRAME
+========================= */
+
+.name-frame{
+
+  position:relative;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+.frame-img{
+
+  position:absolute;
+
+  width:450px;
+
+  max-width:100%;
+
+  pointer-events:none;
+
+}
+
+.name-frame .cover-title{
+
+  position:relative;
+
+  z-index:3;
+
+  margin:0;
+
+}
+
+/* =========================
+   MOBILE
 ========================= */
 
 @media (max-width:768px){
 
+  .cover-back-ornament img{
+
+    width:120%;
+
+  }
+
   .ornament-top-left{
 
-    width:260px;
+    width:240px;
 
     top:-60px;
+
     left:-60px;
+
   }
 
   .ornament-bottom-right{
 
-    width:300px;
+    width:280px;
 
     bottom:-60px;
+
     right:-60px;
+
   }
 
-}
-.cover-ornament.show{
+  .frame-img{
 
-  animation:
-  floatLeaf 8s ease-in-out infinite;
+    width:320px;
+
+  }
+
 }
 
 /* =========================
@@ -1220,15 +1318,20 @@ body{
 
   padding:100px 0;
 
-  background:#F8F6F2;
+  background:#FFFFFF;
 
 }
 
 .gallery-grid{
 
-  column-count:3;
+  display:grid;
 
-  column-gap:18px;
+  grid-template-columns:
+  repeat(2, minmax(280px, 350px));
+
+  justify-content:center;
+
+  gap:22px;
 
   margin-top:50px;
 
@@ -1236,15 +1339,18 @@ body{
 
 .gallery-item{
 
-  break-inside:avoid;
-
-  margin-bottom:18px;
-
-  border-radius:24px;
+  position:relative;
 
   overflow:hidden;
 
+  border-radius:28px;
+
   cursor:pointer;
+
+  aspect-ratio:1/1;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,.06);
 
 }
 
@@ -1252,9 +1358,14 @@ body{
 
   width:100%;
 
+  height:100%;
+
+  object-fit:cover;
+
   display:block;
 
-  transition:.6s ease;
+  transition:
+  transform .6s ease;
 
 }
 
@@ -1263,32 +1374,8 @@ body{
   transform:scale(1.06);
 
 }
-@media (max-width:768px){
 
-  .gallery{
-
-    padding:80px 0;
-
-  }
-
-  .gallery-grid{
-
-    column-count:2;
-
-    column-gap:12px;
-
-  }
-
-}
-.gallery-item{
-
-  position:relative;
-
-  overflow:hidden;
-
-  user-select:none;
-
-}
+/* LOVE ICON */
 
 .gallery-love{
 
@@ -1299,20 +1386,22 @@ body{
   left:50%;
 
   transform:
-    translate(-50%,-50%)
-    scale(.2);
+  translate(-50%, -50%)
+  scale(0);
 
   font-size:4rem;
 
-  opacity:0;
-
   pointer-events:none;
+
+  opacity:0;
 
 }
 
+/* DOUBLE TAP */
+
 .gallery-love.show{
 
-  animation:lovePop .9s ease forwards;
+  animation:lovePop .8s ease forwards;
 
 }
 
@@ -1323,28 +1412,18 @@ body{
     opacity:0;
 
     transform:
-      translate(-50%,-50%)
-      scale(.2);
+    translate(-50%, -50%)
+    scale(.3);
 
   }
 
-  25%{
+  40%{
 
     opacity:1;
 
     transform:
-      translate(-50%,-50%)
-      scale(1.3);
-
-  }
-
-  60%{
-
-    opacity:1;
-
-    transform:
-      translate(-50%,-50%)
-      scale(1);
+    translate(-50%, -50%)
+    scale(1.3);
 
   }
 
@@ -1353,8 +1432,30 @@ body{
     opacity:0;
 
     transform:
-      translate(-50%,-50%)
-      scale(1.8);
+    translate(-50%, -50%)
+    scale(1);
+
+  }
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+  .gallery{
+
+    padding:80px 0;
+
+  }
+
+  .gallery-grid{
+
+    grid-template-columns:1fr;
+
+    max-width:350px;
+
+    margin:50px auto 0;
 
   }
 
@@ -1764,47 +1865,101 @@ body{
 <section class="cover">
 
   <!-- Background -->
+
   <div class="cover-bg"></div>
 
-  <!-- Ornamen -->
-  <div class="cover-ornament ornament-top-left reveal reveal-leaf">
-    <img src="leaf-1.png" alt="">
+  <!-- Ornament Background -->
+
+  <div class="cover-back-ornament reveal reveal-scale">
+
+    <img
+      src="ornament-bg.png"
+      alt=""
+    >
+
   </div>
 
-  <div class="cover-ornament ornament-bottom-right reveal reveal-leaf">
-    <img src="leaf-2.png" alt="">
+  <!-- Ornament Left -->
+
+  <div
+    class="cover-ornament ornament-top-left reveal reveal-leaf"
+  >
+
+    <img
+      src="leaf-1.png"
+      alt=""
+    >
+
+  </div>
+
+  <!-- Ornament Right -->
+
+  <div
+    class="cover-ornament ornament-bottom-right reveal reveal-leaf"
+  >
+
+    <img
+      src="leaf-2.png"
+      alt=""
+    >
+
   </div>
 
   <!-- Content -->
+
   <div class="cover-content">
 
     <p class="cover-subtitle reveal reveal-up">
+
       The Wedding Of
+
     </p>
 
     <div class="cover-divider reveal reveal-scale">
+
       ✦
+
     </div>
 
-    <h1 class="cover-title reveal reveal-up">
-      Diana & Rizky
-    </h1>
+    <!-- Name Frame -->
+
+    <div class="name-frame reveal reveal-scale">
+
+      <img
+        src="frame-name.png"
+        alt=""
+        class="frame-img"
+      >
+
+      <h1 class="cover-title">
+
+        Diana & Rizky
+
+      </h1>
+
+    </div>
 
     <p class="cover-date reveal reveal-up">
+
       12 • 12 • 2026
+
     </p>
 
     <p class="guest-name reveal reveal-up">
+
       Kepada Yth.
       <br>
       Bapak/Ibu/Saudara/i
+
     </p>
 
     <button
       id="openInvitation"
       class="reveal reveal-scale"
     >
+
       Buka Undangan
+
     </button>
 
   </div>
@@ -2266,7 +2421,7 @@ body{
 
 </section>
   
-  <!-- =========================
+<!-- =========================
      GALLERY
 ========================= -->
 
@@ -2294,52 +2449,64 @@ body{
 
       <div class="gallery-item scroll-reveal reveal reveal-up">
 
-  <img src="g1.jpg" alt="">
+        <img src="g1.jpg" alt="Gallery 1">
 
-  <div class="gallery-love">
-    ❤️
-  </div>
-  
-  <div class="gallery-item scroll-reveal reveal reveal-up">
+        <div class="gallery-love">
+          ❤️
+        </div>
 
-  <img src="g2.jpg" alt="">
+      </div>
 
-  <div class="gallery-love">
-    ❤️
-  </div>
+      <div class="gallery-item scroll-reveal reveal reveal-up">
 
- <div class="gallery-item scroll-reveal reveal reveal-up">
+        <img src="g2.jpg" alt="Gallery 2">
 
-  <img src="g3.jpg" alt="">
+        <div class="gallery-love">
+          ❤️
+        </div>
 
-  <div class="gallery-love">
-    ❤️
-  </div>
-  
-   <div class="gallery-item scroll-reveal reveal reveal-up">
+      </div>
 
-  <img src="g4.jpg" alt="">
+      <div class="gallery-item scroll-reveal reveal reveal-up">
 
-  <div class="gallery-love">
-    ❤️
-  </div>
-  
-   <div class="gallery-item scroll-reveal reveal reveal-up">
+        <img src="g3.jpg" alt="Gallery 3">
 
-  <img src="g5.jpg" alt="">
+        <div class="gallery-love">
+          ❤️
+        </div>
 
-  <div class="gallery-love">
-    ❤️
-  </div>
-  
-   <div class="gallery-item scroll-reveal reveal reveal-up">
+      </div>
 
-  <img src="g6.jpg" alt="">
+      <div class="gallery-item scroll-reveal reveal reveal-up">
 
-  <div class="gallery-love">
-    ❤️
-  </div>
-  
+        <img src="g4.jpg" alt="Gallery 4">
+
+        <div class="gallery-love">
+          ❤️
+        </div>
+
+      </div>
+
+      <div class="gallery-item scroll-reveal reveal reveal-up">
+
+        <img src="g5.jpg" alt="Gallery 5">
+
+        <div class="gallery-love">
+          ❤️
+        </div>
+
+      </div>
+
+      <div class="gallery-item scroll-reveal reveal reveal-up">
+
+        <img src="g6.jpg" alt="Gallery 6">
+
+        <div class="gallery-love">
+          ❤️
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -2767,33 +2934,23 @@ document
 .querySelectorAll(".gallery-item")
 .forEach(item => {
 
-  const love =
-  item.querySelector(".gallery-love");
-
   item.addEventListener("dblclick", () => {
 
-    love.classList.remove("show");
-
-    void love.offsetWidth;
+    const love =
+    item.querySelector(".gallery-love");
 
     love.classList.add("show");
+
+    setTimeout(() => {
+
+      love.classList.remove("show");
+
+    }, 800);
 
   });
 
 });
     
-    document
-.getElementById("rsvpForm")
-.addEventListener("submit", e => {
-
-  e.preventDefault();
-
-  alert(
-    "Terima kasih atas konfirmasinya ❤️"
-  );
-
-});
-
 /* =========================
    WISHES
 ========================= */
