@@ -73,265 +73,251 @@ body{
   overflow-x:hidden;
 }
   
-  /* =========================
-   COVER
+/* =========================
+COVER
 ========================= */
 
 .cover{
-
-  min-height:100vh;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  text-align:center;
-
-  position:relative;
-
-  overflow:hidden;
-
-  background:#F8F6F2;
-
-  transition:
-  opacity 1s ease,
-  visibility 1s ease;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+overflow:hidden;
+background:#F8F6F2;
+transition:
+opacity 1s ease,
+visibility 1s ease,
+transform 1s ease;
 }
 
 /* =========================
-   BACKGROUND
+BACKGROUND
 ========================= */
 
 .cover-bg{
+position:absolute;
+inset:0;
+z-index:1;
+}
 
-  position:absolute;
+.cover-bg img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-  inset:0;
+/* Overlay agar tulisan tetap terbaca */
 
-  background:
-
-  radial-gradient(
-  circle at top left,
-  rgba(120,134,107,.08),
-  transparent 40%
-  ),
-
-  radial-gradient(
-  circle at bottom right,
-  rgba(120,134,107,.08),
-  transparent 40%
-  );
-
-  z-index:1;
+.cover-bg::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(248,246,242,.55);
 }
 
 /* =========================
-   CONTENT
+BACK ORNAMENT
 ========================= */
 
-.cover-content{
-
-  position:relative;
-
-  z-index:5;
-
-  width:min(90%,500px);
-}
-
-.cover-subtitle{
-
-  font-size:.75rem;
-
-  letter-spacing:4px;
-
-  text-transform:uppercase;
-
-  color:#78866B;
-
-  margin-bottom:15px;
-}
-
-.cover-divider{
-
-  font-size:1rem;
-
-  color:#78866B;
-
-  margin-bottom:20px;
-}
-
-.cover-title{
-
-  font-family:'Cormorant Garamond',serif;
-
-  font-size:3rem;
-
-  font-weight:500;
-
-  line-height:1.2;
-
-  margin-bottom:15px;
-
-  color:#2E2E2E;
-}
-
-.cover-date{
-
-  font-size:.9rem;
-
-  letter-spacing:2px;
-
-  color:#666;
-
-  margin-bottom:25px;
-}
-
-.guest-name{
-
-  line-height:1.8;
-
-  margin-bottom:35px;
-
-  color:#444;
-}
-  .cover-bg img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  position:absolute;
-  inset:0;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-#openInvitation{
-
-  padding:15px 38px;
-
-  border:none;
-
-  border-radius:999px;
-
-  background:linear-gradient(
-    135deg,
-    #8EA17E,
-    #78866B
-  );
-
-  color:#fff;
-
-  font-weight:500;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 10px 25px rgba(120,134,107,.25),
-    inset 0 1px 0 rgba(255,255,255,.3);
-
-  transition:.4s;
-}
-
-#openInvitation:hover{
-
-  transform:
-    translateY(-4px)
-    scale(1.04);
-
-  box-shadow:
-    0 18px 35px rgba(120,134,107,.35);
-
-}
-
-/* =========================
-   ORNAMENT
-========================= */
-
-.cover-ornament{
-
-  position:absolute;
-
-  z-index:2;
-
-  pointer-events:none;
-}
-
-.ornament-top-left{
-
-  top:-30px;
-
-  left:-30px;
-
-  width:180px;
-}
-
-.ornament-bottom-right{
-
-  bottom:-30px;
-
-  right:-30px;
-
-  width:220px;
-}
-
-.cover-ornament img{
-
-  width:100%;
-
-  display:block;
-}
-  .cover.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transform:scale(1.03);
-}
-
-}
 .cover-back-ornament{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1;
-  opacity:.08;
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:2;
+opacity:.08;
 }
 
 .cover-back-ornament img{
-  width:500px;
-  max-width:80%;
+width:500px;
+max-width:80%;
 }
 
 /* =========================
-   FLOATING
+CONTENT
+========================= */
+
+.cover-content{
+position:relative;
+z-index:5;
+width:min(90%,500px);
+}
+
+.cover-subtitle{
+font-size:.75rem;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#78866B;
+margin-bottom:15px;
+}
+
+.cover-divider{
+font-size:1rem;
+color:#78866B;
+margin-bottom:20px;
+}
+
+.cover-title{
+font-family:'Cormorant Garamond',serif;
+font-size:3rem;
+font-weight:500;
+line-height:1.2;
+color:#2E2E2E;
+}
+
+.cover-date{
+font-size:.9rem;
+letter-spacing:2px;
+color:#666;
+margin:25px 0;
+}
+
+.guest-name{
+line-height:1.8;
+margin-bottom:35px;
+color:#444;
+}
+
+/* =========================
+NAME FRAME
+========================= */
+
+.name-frame{
+position:relative;
+display:inline-flex;
+justify-content:center;
+align-items:center;
+}
+
+.frame-img{
+width:100%;
+max-width:420px;
+display:block;
+}
+
+.frame-content{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+/* =========================
+BUTTON
+========================= */
+
+#openInvitation{
+padding:15px 38px;
+border:none;
+border-radius:999px;
+background:linear-gradient(
+135deg,
+#8EA17E,
+#78866B
+);
+color:#fff;
+font-weight:500;
+cursor:pointer;
+box-shadow:
+0 10px 25px rgba(120,134,107,.25),
+inset 0 1px 0 rgba(255,255,255,.3);
+transition:.4s;
+}
+
+#openInvitation:hover{
+transform:
+translateY(-4px)
+scale(1.04);
+box-shadow:
+0 18px 35px rgba(120,134,107,.35);
+}
+
+/* =========================
+ORNAMENT
+========================= */
+
+.cover-ornament{
+position:absolute;
+z-index:3;
+pointer-events:none;
+}
+
+.ornament-top-left{
+top:-30px;
+left:-30px;
+width:180px;
+}
+
+.ornament-bottom-right{
+bottom:-30px;
+right:-30px;
+width:220px;
+}
+
+.cover-ornament img{
+width:100%;
+display:block;
+}
+
+/* =========================
+FLOATING
 ========================= */
 
 @keyframes floatLeaf{
-
-  0%,100%{
-
-    transform:
-    translateY(0px);
-  }
-
-  50%{
-
-    transform:
-    translateY(-10px);
-  }
-
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
 }
 
 .cover-ornament.show{
-
-  animation:
-  floatLeaf 8s ease-in-out infinite;
+animation:floatLeaf 8s ease-in-out infinite;
 }
 
+/* =========================
+HIDE COVER
+========================= */
+
+.cover.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:scale(1.03);
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width:768px){
+
+.cover-title{
+font-size:2.2rem;
+}
+
+.frame-img{
+max-width:320px;
+}
+
+.ornament-top-left{
+width:120px;
+}
+
+.ornament-bottom-right{
+width:150px;
+}
+
+}
 /* =========================
    REVEAL SYSTEM
 ========================= */
@@ -1797,130 +1783,87 @@ body{
 </style>
 <body>
 
-  <!-- =========================
-     COVER
-========================= -->
-
-<section class="cover">
+  <section class="cover">
 
   <!-- Background -->
 
   <div class="cover-bg">
-  <img src="cover.jpg" alt="Wedding Cover">
-</div>
+    <img src="cover.jpg" alt="Wedding Cover">
+  </div>
 
   <!-- Ornament Background -->
 
   <div class="cover-back-ornament reveal reveal-scale">
-
-    <img
-      src="ornament-bg.png"
-      alt=""
-    >
-
+    <img src="ornament-bg.png" alt="">
   </div>
 
-  <!-- Ornament Left -->
+  <!-- Ornament Kiri -->
 
-  <div
-    class="cover-ornament ornament-top-left reveal reveal-leaf"
-  >
-
-    <img
-      src="leaf-1.png"
-      alt=""
-    >
-
+  <div class="cover-ornament ornament-top-left reveal reveal-leaf">
+    <img src="leaf-1.png" alt="">
   </div>
 
-  <!-- Ornament Right -->
+  <!-- Ornament Kanan -->
 
-  <div
-    class="cover-ornament ornament-bottom-right reveal reveal-leaf"
-  >
-
-    <img
-      src="leaf-2.png"
-      alt=""
-    >
-
+  <div class="cover-ornament ornament-bottom-right reveal reveal-leaf">
+    <img src="leaf-2.png" alt="">
   </div>
 
   <!-- Content -->
 
   <div class="cover-content">
 
-    <p class="cover-subtitle reveal reveal-up">
+```
+<p class="cover-subtitle reveal reveal-up">
+  The Wedding Of
+</p>
 
-      The Wedding Of
+<div class="cover-divider reveal reveal-scale">
+  ✦
+</div>
 
-    </p>
+<!-- Frame Nama -->
 
-    <div class="cover-divider reveal reveal-scale">
-
-      ✦
-
-    </div>
-
-    <!-- Name Frame -->
-
-    <div class="name-frame">
+<div class="name-frame reveal reveal-scale">
 
   <img
     src="frame-name.png"
-    alt=""
+    alt="Frame Nama"
     class="frame-img"
   >
 
   <div class="frame-content">
 
-    <p class="cover-subtitle">
-
-      The Wedding Of
-
-    </p>
-
-    <div class="cover-divider">
-
-      ✦
-
-    </div>
-
     <h1 class="cover-title">
-
       Diana & Rizky
-
     </h1>
 
   </div>
 
-    </div>
-    <p class="cover-date reveal reveal-up">
+</div>
 
-      12 • 12 • 2026
+<p class="cover-date reveal reveal-up">
+  12 • 12 • 2026
+</p>
 
-    </p>
+<p class="guest-name reveal reveal-up">
+  Kepada Yth.
+  <br>
+  Bapak/Ibu/Saudara/i
+</p>
 
-    <p class="guest-name reveal reveal-up">
-
-      Kepada Yth.
-      <br>
-      Bapak/Ibu/Saudara/i
-
-    </p>
-
-    <button
-      id="openInvitation"
-      class="reveal reveal-scale"
-    >
-
-      Buka Undangan
-
-    </button>
+<button
+  id="openInvitation"
+  class="reveal reveal-scale"
+>
+  Buka Undangan
+</button>
+```
 
   </div>
 
 </section>
+
 <main class="main-content">
  
  <!-- =========================
