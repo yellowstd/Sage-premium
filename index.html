@@ -240,39 +240,7 @@ body{
 }
 
 /* =========================
-   COVER ORNAMENT SYSTEM
-========================= */
-
-.cover-back-ornament{
-
-  position:absolute;
-
-  inset:0;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  z-index:1;
-
-  opacity:.12;
-
-  pointer-events:none;
-
-}
-
-.cover-back-ornament img{
-
-  width:90%;
-
-  max-width:750px;
-
-}
-
-/* =========================
-   SIDE ORNAMENT
+   COVER ORNAMENT
 ========================= */
 
 .cover-ornament{
@@ -283,25 +251,7 @@ body{
 
   pointer-events:none;
 
-}
-
-.ornament-top-left{
-
-  top:-100px;
-
-  left:-100px;
-
-  width:380px;
-
-}
-
-.ornament-bottom-right{
-
-  bottom:-100px;
-
-  right:-100px;
-
-  width:420px;
+  opacity:1;
 
 }
 
@@ -309,89 +259,62 @@ body{
 
   width:100%;
 
+  height:auto;
+
   display:block;
 
 }
 
-/* =========================
-   NAME FRAME
-========================= */
+/* KIRI ATAS */
 
-.name-frame{
+.ornament-top-left{
 
-  position:relative;
+  top:-30px;
 
-  display:flex;
+  left:-30px;
 
-  justify-content:center;
-
-  align-items:center;
-
-  margin-bottom:20px;
+  width:280px;
 
 }
 
-.frame-img{
+/* KANAN BAWAH */
 
-  position:absolute;
+.ornament-bottom-right{
 
-  width:450px;
+  bottom:-30px;
 
-  max-width:100%;
+  right:-30px;
 
-  pointer-events:none;
-
-}
-
-.name-frame .cover-title{
-
-  position:relative;
-
-  z-index:3;
-
-  margin:0;
+  width:320px;
 
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width:768px){
 
-  .cover-back-ornament img{
-
-    width:120%;
-
-  }
-
   .ornament-top-left{
 
-    width:240px;
+    width:180px;
 
-    top:-60px;
+    top:-20px;
 
-    left:-60px;
+    left:-20px;
 
   }
 
   .ornament-bottom-right{
 
-    width:280px;
+    width:220px;
 
-    bottom:-60px;
+    bottom:-20px;
 
-    right:-60px;
-
-  }
-
-  .frame-img{
-
-    width:320px;
+    right:-20px;
 
   }
 
 }
+
 
 /* =========================
    REVEAL SYSTEM
