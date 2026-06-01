@@ -243,31 +243,20 @@ body{
    ORNAMENT
 ========================= */
 
-.cover-ornament{
-
-  position:absolute;
-
-  z-index:2;
-
-  pointer-events:none;
-}
-
 .ornament-top-left{
 
-  top:-30px;
+  top:-80px;
+  left:-80px;
 
-  left:-30px;
-
-  width:180px;
+  width:420px;
 }
 
 .ornament-bottom-right{
 
-  bottom:-30px;
+  bottom:-80px;
+  right:-80px;
 
-  right:-30px;
-
-  width:220px;
+  width:480px;
 }
 
 .cover-ornament img{
@@ -281,22 +270,25 @@ body{
    FLOATING
 ========================= */
 
-@keyframes floatLeaf{
+@media (max-width:768px){
 
-  0%,100%{
+  .ornament-top-left{
 
-    transform:
-    translateY(0px);
+    width:260px;
+
+    top:-60px;
+    left:-60px;
   }
 
-  50%{
+  .ornament-bottom-right{
 
-    transform:
-    translateY(-10px);
+    width:300px;
+
+    bottom:-60px;
+    right:-60px;
   }
 
 }
-
 .cover-ornament.show{
 
   animation:
