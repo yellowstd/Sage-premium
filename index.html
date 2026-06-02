@@ -264,9 +264,11 @@ body{
 
     width:280px;
 
-    opacity:.100;
+    opacity:.0;
 
-    z-index:0;
+    z-index:1;
+
+    pointer-events:none;
 
 }
 
@@ -281,7 +283,7 @@ body{
     padding:
     14px 36px;
     
-    z-index: 999;
+    z-index: 10;
 
     border:none;
 
@@ -2079,6 +2081,8 @@ j
 
 <section class="cover">
 
+    <!-- ORNAMENT -->
+
     <img
     src="leaf-1.png"
     alt=""
@@ -2091,6 +2095,16 @@ j
     class="leaf-right"
     >
 
+    <!-- FRAME NAME -->
+
+    <img
+    src="frame-name.png"
+    alt=""
+    class="cover-frame"
+    >
+
+    <!-- CONTENT -->
+
     <div class="cover-content">
 
         <p class="cover-label">
@@ -2099,21 +2113,16 @@ j
 
         <div class="cover-name">
 
-    <img
-    src="frame-name.png"
-    alt=""
-    class="cover-frame"
-    >
+            <div class="ampersand">
+                &
+            </div>
 
-    <div class="ampersand">
-        &
-    </div>
+            <h1>Diana</h1>
 
-    <h1>Diana</h1>
+            <h1>Rizky</h1>
 
-    <h1>Rizky</h1>
+        </div>
 
-</div>
         <p class="cover-date">
             12 • 12 • 2026
         </p>
@@ -2125,6 +2134,7 @@ j
     </div>
 
 </section>
+
 <main id="mainContent">
   <!-- =========================
      QUOTE
