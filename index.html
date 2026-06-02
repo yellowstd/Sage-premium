@@ -116,7 +116,8 @@ body{
 .leaf-left{
 
     position:absolute;
-
+    animation:
+    floatLeaf 6s ease-in-out infinite;
     top:0;
     left:0;
 
@@ -129,7 +130,8 @@ body{
 .leaf-right{
 
     position:absolute;
-
+    animation:
+    floatLeaf 8s ease-in-out infinite;
     bottom:0;
     right:0;
 
@@ -138,6 +140,21 @@ body{
     z-index:1;
 
 }
+  @keyframes floatLeaf{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+  }
 
 /* =========================
    COVER CONTENT
