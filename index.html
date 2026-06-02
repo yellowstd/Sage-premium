@@ -285,9 +285,30 @@ body{
 
     z-index:1;
 
+    animation:
+    frameFloat 7s ease-in-out infinite;
+
     pointer-events:none;
 
 }
+  @keyframes frameFloat{
+
+    0%{
+        transform:
+        translate(-50%,-50%);
+    }
+
+    50%{
+        transform:
+        translate(-50%,-53%);
+    }
+
+    100%{
+        transform:
+        translate(-50%,-50%);
+    }
+
+  }
 
 /* =========================
    BUTTON
@@ -316,6 +337,9 @@ body{
 
     transition:.3s;
 
+    animation:
+    pulseBtn 2.5s infinite;
+
 }
 
 .btn-open:hover{
@@ -324,6 +348,30 @@ body{
     translateY(-3px);
 
 }
+  @keyframes pulseBtn{
+
+    0%{
+
+        box-shadow:
+        0 0 0 0 rgba(184,155,103,.4);
+
+    }
+
+    70%{
+
+        box-shadow:
+        0 0 0 15px rgba(184,155,103,0);
+
+    }
+
+    100%{
+
+        box-shadow:
+        0 0 0 0 rgba(184,155,103,0);
+
+    }
+
+  }
 
 /* =========================
    REVEAL BASE
